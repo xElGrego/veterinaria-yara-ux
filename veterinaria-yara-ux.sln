@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33815.320
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{7181C22E-20DB-4757-9922-6DCCDC1ADF18}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "veterinaria-yara-ux.api", "veterinaria-yara-ux.api\veterinaria-yara-ux.api.csproj", "{90A9CDA0-7B68-46D0-9373-C41C84E305CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "veterinaria-yara-ux.application", "veterinaria-yara-ux.application\veterinaria-yara-ux.application.csproj", "{946BFC91-B833-4A7D-B84B-B88D4137D6F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "veterinaria-yara-ux.infrastructure", "veterinaria-yara-ux.infrastructure\veterinaria-yara-ux.infrastructure.csproj", "{82E41487-31B2-4EEE-91C1-810C9EBD767C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "veterinaria-yara-ux.domain", "veterinaria-yara-ux.domain\veterinaria-yara-ux.domain.csproj", "{A8A0A970-5C07-4070-8B33-064D41FDCE2B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Loggin", "Common.Loggin\Common.Loggin.csproj", "{70A45089-ABB1-4DD8-8EBC-F6B69763BBB1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{90A9CDA0-7B68-46D0-9373-C41C84E305CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90A9CDA0-7B68-46D0-9373-C41C84E305CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90A9CDA0-7B68-46D0-9373-C41C84E305CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90A9CDA0-7B68-46D0-9373-C41C84E305CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{946BFC91-B833-4A7D-B84B-B88D4137D6F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{946BFC91-B833-4A7D-B84B-B88D4137D6F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{946BFC91-B833-4A7D-B84B-B88D4137D6F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{946BFC91-B833-4A7D-B84B-B88D4137D6F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82E41487-31B2-4EEE-91C1-810C9EBD767C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82E41487-31B2-4EEE-91C1-810C9EBD767C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82E41487-31B2-4EEE-91C1-810C9EBD767C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82E41487-31B2-4EEE-91C1-810C9EBD767C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8A0A970-5C07-4070-8B33-064D41FDCE2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8A0A970-5C07-4070-8B33-064D41FDCE2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8A0A970-5C07-4070-8B33-064D41FDCE2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8A0A970-5C07-4070-8B33-064D41FDCE2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70A45089-ABB1-4DD8-8EBC-F6B69763BBB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70A45089-ABB1-4DD8-8EBC-F6B69763BBB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70A45089-ABB1-4DD8-8EBC-F6B69763BBB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70A45089-ABB1-4DD8-8EBC-F6B69763BBB1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{90A9CDA0-7B68-46D0-9373-C41C84E305CE} = {7181C22E-20DB-4757-9922-6DCCDC1ADF18}
+		{946BFC91-B833-4A7D-B84B-B88D4137D6F8} = {7181C22E-20DB-4757-9922-6DCCDC1ADF18}
+		{82E41487-31B2-4EEE-91C1-810C9EBD767C} = {7181C22E-20DB-4757-9922-6DCCDC1ADF18}
+		{A8A0A970-5C07-4070-8B33-064D41FDCE2B} = {7181C22E-20DB-4757-9922-6DCCDC1ADF18}
+		{70A45089-ABB1-4DD8-8EBC-F6B69763BBB1} = {7181C22E-20DB-4757-9922-6DCCDC1ADF18}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {49E81FB8-E266-4F5D-9CD1-ECF78DE0DF80}
+	EndGlobalSection
+EndGlobal
