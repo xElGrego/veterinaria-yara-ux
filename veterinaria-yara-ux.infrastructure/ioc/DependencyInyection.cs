@@ -10,6 +10,10 @@ using veterinaria_yara_ux.infrastructure.data.repositories.Estados;
 using veterinaria_yara_ux.infrastructure.data.repositories.Mascota;
 using veterinaria_yara_ux.infrastructure.data.repositories.Raza;
 using veterinaria_yara_ux.infrastructure.data.repositories.Usuario;
+using MassTransit;
+using RabbitMQ.Client;
+using veterinaria_yara_ux.domain.DTOs.RabbitMQ;
+using veterinaria_yara_ux.infrastructure.data.repositories.RabbitMQ;
 
 namespace veterinaria_yara_ux.infrastructure.ioc
 {
@@ -23,6 +27,8 @@ namespace veterinaria_yara_ux.infrastructure.ioc
             services.AddScoped<IEstados, EstadosRepository>();
             services.AddScoped<IMascota, MascotaRepository>();
             services.AddScoped<IRaza, RazaRepository>();
+            services.AddScoped<SomeEventPublisher>();
+
 
             //var mapperConfig = new MapperConfiguration(mc =>
             //{
@@ -45,6 +51,33 @@ namespace veterinaria_yara_ux.infrastructure.ioc
                     .BuildServiceProvider();
 
             services.AddHttpContextAccessor();
+
+            services.AddMassTransit(mt =>
+            {
+                mt.UsingRabbitMq((context, cfg) =>
+                {
+                    cfg.Host(new Uri("rabbitmq://localhost"), host =>
+                    {
+                        host.Username("grego977");
+                        host.Password("yara19975");
+                    });
+
+                    cfg.Publish<UserCreated>(x =>
+                    {
+                        x.ExchangeType = ExchangeType.Topic;
+                        x.BindQueue("test-gregorito-queue", "test-gregorito");
+                    });
+
+
+                    //cfg.Publish<UserCreated>(x =>
+                    //{
+                    //    x.ExchangeType = ExchangeType.Topic;
+                    //    x.ExchangeName = "test-gregorito";
+                    //    x.BindQueue("test-gregorito-queue", "test-gregorito");
+                    //});
+                });
+            });
+
             return services;
         }
     }

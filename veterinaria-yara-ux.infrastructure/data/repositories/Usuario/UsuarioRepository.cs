@@ -8,6 +8,7 @@ using veterinaria_yara_ux.application.models.exceptions;
 using veterinaria_yara_ux.domain.DTOs;
 using veterinaria_yara_ux.domain.DTOs.Paginador;
 using veterinaria_yara_ux.domain.DTOs.Usuario;
+using veterinaria_yara_ux.infrastructure.data.repositories.RabbitMQ;
 using veterinaria_yara_ux.infrastructure.data.repositories.Raza;
 
 namespace veterinaria_yara_ux.infrastructure.data.repositories.Usuario
@@ -16,11 +17,14 @@ namespace veterinaria_yara_ux.infrastructure.data.repositories.Usuario
     {
         private readonly IConfiguration _configuration;
         private readonly ILogger<UsuarioRepository> _logger;
+        private readonly SomeEventPublisher _eventPublisher;
 
-        public UsuarioRepository(IConfiguration configuration, ILogger<UsuarioRepository> logger)
+
+        public UsuarioRepository(IConfiguration configuration, ILogger<UsuarioRepository> logger, SomeEventPublisher eventPublisher)
         {
             _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            _eventPublisher = eventPublisher ?? throw new ArgumentNullException(nameof(eventPublisher));
         }
 
 
@@ -106,6 +110,7 @@ namespace veterinaria_yara_ux.infrastructure.data.repositories.Usuario
                         var recep = await res.Content.ReadAsStringAsync();
                         usuario = JsonConvert.DeserializeObject<NuevoUsuarioDTO>(recep);
                         //IR A RABBIT MQ
+                        await _eventPublisher.PublishUserCreatedEvent("Gregorito");
                     }
                     else
                     {
