@@ -70,7 +70,7 @@ namespace veterinaria_yara_core.infrastructure.extentions
                      {
                      }
 
-                     MsDtoResponseError _response = new MsDtoResponseError
+                     var _response = new DtoResponseError
                      {
                          code = _code,
                          message = _message,

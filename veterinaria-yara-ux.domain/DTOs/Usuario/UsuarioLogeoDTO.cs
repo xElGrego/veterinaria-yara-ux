@@ -1,4 +1,4 @@
-namespace veterinaria_yara_ux.domain.DTOs
+﻿namespace veterinaria_yara_ux.domain.DTOs.Usuario
 {
     public class UsuarioLogeoDTO
     {

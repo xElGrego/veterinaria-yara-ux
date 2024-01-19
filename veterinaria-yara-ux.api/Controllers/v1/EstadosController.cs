@@ -23,14 +23,14 @@ namespace veterinaria_yara_ux.api.Controllers.v1
         [HttpGet]
         [Consumes("application/json")]
         [Produces("application/json")]
-        [ProducesResponseType(typeof(MsDtoResponse<List<EstadosDTO>>), 200)]
-        [ProducesResponseType(typeof(MsDtoResponseError), 400)]
-        [ProducesResponseType(typeof(MsDtoResponseError), 500)]
+        [ProducesResponseType(typeof(DtoResponse<List<EstadosDTO>>), 200)]
+        [ProducesResponseType(typeof(DtoResponseError), 400)]
+        [ProducesResponseType(typeof(DtoResponseError), 500)]
         [Route("/v1/veterinaria-yara/obtener-estados")]
         public async Task<ActionResult<List<EstadosDTO>>> ObtenerEstados()
         {
             var response = await _estados.ObtenerEstados();
-            return Ok(new MsDtoResponse<List<EstadosDTO>>(response));
+            return Ok(new DtoResponse<List<EstadosDTO>>(response));
         }
     }
 }

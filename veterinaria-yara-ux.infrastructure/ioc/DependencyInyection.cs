@@ -6,10 +6,10 @@ using Serilog;
 using StackExchange.Redis;
 using veterinaria_yara_ux.infrastructure.mappings;
 using veterinaria_yara_ux.application.interfaces.repositories;
-using veterinaria_yara_ux.infrastructure.data.repositories.login;
 using veterinaria_yara_ux.infrastructure.data.repositories.Estados;
 using veterinaria_yara_ux.infrastructure.data.repositories.Mascota;
 using veterinaria_yara_ux.infrastructure.data.repositories.Raza;
+using veterinaria_yara_ux.infrastructure.data.repositories.Usuario;
 
 namespace veterinaria_yara_ux.infrastructure.ioc
 {
@@ -19,7 +19,7 @@ namespace veterinaria_yara_ux.infrastructure.ioc
         {
             services.AddLogging(loginBuilder => loginBuilder.AddSerilog(dispose: true));
 
-            services.AddScoped<ILogin, LoginRepository>();
+            services.AddScoped<IUsuario, UsuarioRepository>();
             services.AddScoped<IEstados, EstadosRepository>();
             services.AddScoped<IMascota, MascotaRepository>();
             services.AddScoped<IRaza, RazaRepository>();

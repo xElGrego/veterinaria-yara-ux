@@ -11,7 +11,6 @@ using veterinaria_yara_ux.domain.DTOs;
 using veterinaria_yara_ux.domain.DTOs.Estados;
 using veterinaria_yara_ux.domain.DTOs.Estados.Mascota;
 using veterinaria_yara_ux.domain.DTOs.Paginador;
-using veterinaria_yara_ux.infrastructure.data.repositories.login;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace veterinaria_yara_ux.infrastructure.data.repositories.Mascota

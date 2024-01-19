@@ -25,8 +25,6 @@ builder.Services.AddAuthorization(options =>
 });
 
 
-
-
 builder.Services.AddSwaggerGen(options =>
 {
     var title = builder.Configuration["OpenApi:info:title"];

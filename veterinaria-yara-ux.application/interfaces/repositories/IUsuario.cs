@@ -1,10 +1,10 @@
-using veterinaria_yara_ux.domain.DTOs;
-using veterinaria_yara_ux.domain.DTOs.Paginador;
 using veterinaria_yara_ux.domain.DTOs.Usuario;
+using veterinaria_yara_ux.domain.DTOs.Paginador;
+using veterinaria_yara_ux.domain.DTOs;
 
 namespace veterinaria_yara_ux.application.interfaces.repositories
 {
-    public interface ILogin
+    public interface IUsuario
     {
         Task<NuevoUsuarioDTO> Login(UsuarioLogeoDTO usuario);
         Task<CrearResponse> CrearUsuario(AgregarUsuarioDTO usuario);

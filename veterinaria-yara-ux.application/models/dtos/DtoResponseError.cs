@@ -1,6 +1,6 @@
-namespace veterinaria_yara_ux.application.models.dtos
+﻿namespace veterinaria_yara_ux.application.models.dtos
 {
-    public class MsDtoResponseError
+    public class DtoResponseError
     {
         public int code { get; set; }
         public string? message { get; set; }
