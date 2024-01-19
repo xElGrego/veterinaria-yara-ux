@@ -105,6 +105,7 @@ namespace veterinaria_yara_ux.infrastructure.data.repositories.Usuario
                     {
                         var recep = await res.Content.ReadAsStringAsync();
                         usuario = JsonConvert.DeserializeObject<NuevoUsuarioDTO>(recep);
+                        //IR A RABBIT MQ
                     }
                     else
                     {
