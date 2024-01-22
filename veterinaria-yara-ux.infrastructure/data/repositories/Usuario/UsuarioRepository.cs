@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using RabbitMQ.Client;
 using System.Text;
 using veterinaria_yara_ux.application.interfaces.repositories;
 using veterinaria_yara_ux.application.models.dtos;
@@ -8,7 +9,6 @@ using veterinaria_yara_ux.application.models.exceptions;
 using veterinaria_yara_ux.domain.DTOs;
 using veterinaria_yara_ux.domain.DTOs.Paginador;
 using veterinaria_yara_ux.domain.DTOs.Usuario;
-using veterinaria_yara_ux.infrastructure.data.repositories.RabbitMQ;
 using veterinaria_yara_ux.infrastructure.data.repositories.Raza;
 
 namespace veterinaria_yara_ux.infrastructure.data.repositories.Usuario
@@ -17,14 +17,12 @@ namespace veterinaria_yara_ux.infrastructure.data.repositories.Usuario
     {
         private readonly IConfiguration _configuration;
         private readonly ILogger<UsuarioRepository> _logger;
-        private readonly SomeEventPublisher _eventPublisher;
 
 
-        public UsuarioRepository(IConfiguration configuration, ILogger<UsuarioRepository> logger, SomeEventPublisher eventPublisher)
+        public UsuarioRepository(IConfiguration configuration, ILogger<UsuarioRepository> logger)
         {
             _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-            _eventPublisher = eventPublisher ?? throw new ArgumentNullException(nameof(eventPublisher));
         }
 
 
@@ -72,6 +70,7 @@ namespace veterinaria_yara_ux.infrastructure.data.repositories.Usuario
                     {
                         var recep = await res.Content.ReadAsStringAsync();
                         _logger.LogInformation("Respuesta crear usuario [" + JsonConvert.SerializeObject(recep) + "]");
+                        await Notificar(usuario);
                     }
                     else
                     {
@@ -109,8 +108,6 @@ namespace veterinaria_yara_ux.infrastructure.data.repositories.Usuario
                     {
                         var recep = await res.Content.ReadAsStringAsync();
                         usuario = JsonConvert.DeserializeObject<NuevoUsuarioDTO>(recep);
-                        //IR A RABBIT MQ
-                        await _eventPublisher.PublishUserCreatedEvent("Gregorito");
                     }
                     else
                     {
@@ -123,8 +120,44 @@ namespace veterinaria_yara_ux.infrastructure.data.repositories.Usuario
             }
             catch (Exception ex)
             {
-                _logger.LogError("Consultar usuarios", ex.Message);
+                _logger.LogError("Login ", ex.Message);
                 throw new VeterinariaYaraException(ex.Message);
+            }
+        }
+
+        public async Task<bool> Notificar(AgregarUsuarioDTO message)
+        {
+            try
+            {
+                var routingKey = "veterinaria.notificaciones";
+                var hostName = _configuration["RabbitMQ:HostName"];
+                var userName = _configuration["RabbitMQ:UserName"];
+                var passWord = _configuration["RabbitMQ:PassWord"];
+
+                var factory = new ConnectionFactory
+                {
+                    HostName = hostName,
+                    UserName = userName,
+                    Password = passWord,
+                };
+
+                using (var connection = factory.CreateConnection())
+                {
+                    using (var channel = connection.CreateModel())
+                    {
+                        var serializedMessage = JsonConvert.SerializeObject(message);
+                        var body = Encoding.UTF8.GetBytes(serializedMessage);
+                        var properties = channel.CreateBasicProperties();
+                        channel.BasicPublish(exchange: "veterinaria", routingKey: routingKey, basicProperties: properties, body: body);
+                        _logger.LogInformation("Usuario enviando con exito");
+                        return true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Error al enviar mensaje topic: " + ex.Message);
+                throw new Exception("Error al enviar mensaje topic");
             }
         }
     }
