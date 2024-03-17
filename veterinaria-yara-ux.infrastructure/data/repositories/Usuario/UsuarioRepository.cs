@@ -9,7 +9,6 @@ using veterinaria_yara_ux.application.models.exceptions;
 using veterinaria_yara_ux.domain.DTOs;
 using veterinaria_yara_ux.domain.DTOs.Paginador;
 using veterinaria_yara_ux.domain.DTOs.Usuario;
-using veterinaria_yara_ux.infrastructure.data.repositories.Raza;
 
 namespace veterinaria_yara_ux.infrastructure.data.repositories.Usuario
 {
@@ -156,8 +155,8 @@ namespace veterinaria_yara_ux.infrastructure.data.repositories.Usuario
             }
             catch (Exception ex)
             {
-                _logger.LogError("Error al enviar mensaje topic: " + ex.Message);
-                throw new Exception("Error al enviar mensaje topic");
+                _logger.LogError("Error al enviar mensaje cola: " + ex.Message);
+                throw new VeterinariaYaraException("Error al enviar mensaje cola");
             }
         }
     }

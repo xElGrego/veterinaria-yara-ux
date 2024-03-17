@@ -7,6 +7,8 @@ using System.Reflection;
 using System.Text;
 using veterinaria_yara_core.infrastructure.extentions;
 using veterinaria_yara_ux.api.Extensions;
+using veterinaria_yara_ux.api.Services;
+using veterinaria_yara_ux.application.interfaces.repositories;
 using veterinaria_yara_ux.infrastructure.ioc;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +16,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddInfraestructure(builder.Configuration);
@@ -65,9 +68,9 @@ builder.Services.AddSwaggerGen(options =>
     var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
     options.IncludeXmlComments(xmlPath);
-
 });
 
+builder.Services.AddHostedService<KafkaService>();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
