@@ -6,7 +6,6 @@ using veterinaria_yara_ux.application.interfaces.repositories;
 using veterinaria_yara_ux.domain.DTOs;
 using veterinaria_yara_ux.domain.DTOs.Paginador;
 using veterinaria_yara_ux.domain.DTOs.Raza;
-using veterinaria_yara_ux.domain.DTOs.Usuario;
 
 namespace veterinaria_yara_ux.infrastructure.data.repositories.Raza
 {

@@ -1,7 +1,6 @@
 using AutoMapper;
 using veterinaria_yara_ux.domain.DTOs;
 using veterinaria_yara_ux.domain.DTOs.Estados;
-using veterinaria_yara_ux.domain.DTOs.Estados.Mascota;
 using veterinaria_yara_ux.domain.DTOs.Raza;
 using veterinaria_yara_ux.domain.DTOs.Usuario;
  

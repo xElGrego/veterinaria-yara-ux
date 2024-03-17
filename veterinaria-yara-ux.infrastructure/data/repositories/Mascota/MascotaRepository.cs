@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using veterinaria_yara_ux.application.interfaces.repositories;
 using veterinaria_yara_ux.domain.DTOs;
 using veterinaria_yara_ux.domain.DTOs.Estados;
-using veterinaria_yara_ux.domain.DTOs.Estados.Mascota;
+using veterinaria_yara_ux.domain.DTOs.Mascota;
 using veterinaria_yara_ux.domain.DTOs.Paginador;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 

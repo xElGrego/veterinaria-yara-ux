@@ -13,6 +13,7 @@ using veterinaria_yara_ux.infrastructure.data.repositories.Usuario;
 using MassTransit;
 using RabbitMQ.Client;
 using veterinaria_yara_ux.domain.DTOs.RabbitMQ;
+using veterinaria_yara_ux.infrastructure.data.repositories.Notificacion;
 
 namespace veterinaria_yara_ux.infrastructure.ioc
 {
@@ -26,18 +27,18 @@ namespace veterinaria_yara_ux.infrastructure.ioc
             services.AddScoped<IEstados, EstadosRepository>();
             services.AddScoped<IMascota, MascotaRepository>();
             services.AddScoped<IRaza, RazaRepository>();
+            services.AddScoped<INotificaciones, NotificacionRepository>();
+
+       //var mapperConfig = new MapperConfiguration(mc =>
+       //{
+       //    mc.Internal().MethodMappingEnabled = false;
+       //    mc.AddProfile(new MappingProfile());
+       //});
+
+       //services.AddAutoMapper(cfg => cfg.Internal().MethodMappingEnabled = false, typeof(MappingProfile).Assembly);
 
 
-            //var mapperConfig = new MapperConfiguration(mc =>
-            //{
-            //    mc.Internal().MethodMappingEnabled = false;
-            //    mc.AddProfile(new MappingProfile());
-            //});
-
-            //services.AddAutoMapper(cfg => cfg.Internal().MethodMappingEnabled = false, typeof(MappingProfile).Assembly);
-
-
-            var configurationOptions = new ConfigurationOptions
+       var configurationOptions = new ConfigurationOptions
             {
                 EndPoints = { configuration.GetConnectionString("RedisUrl") ?? "" },
                 Password = configuration.GetConnectionString("RedisClave"),
